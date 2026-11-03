@@ -1,5 +1,9 @@
 #!/bin/bash
-set -eu # in case an error occurs
+set -eu # just in case an error occurs
+
+# no comments for you 
+# it was hard to write 
+# so it should be hard to read
 
 RED="\e[0;31m"
 GREEN="\e[0;32m"
@@ -19,25 +23,9 @@ fi
 apt install nano ufw
 
 # ------------ DOCKER ------------
-sudo apt update
-sudo apt install ca-certificates curl -y
-sudo install -m 0755 -d /etc/apt/keyrings
-sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-sudo chmod a+r /etc/apt/keyrings/docker.asc
-
-# Add the repository to Apt sources:
-sudo tee /etc/apt/sources.list.d/docker.sources <<EOF
-Types: deb
-URIs: https://download.docker.com/linux/ubuntu
-Suites: $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}")
-Components: stable
-Architectures: $(dpkg --print-architecture)
-Signed-By: /etc/apt/keyrings/docker.asc
-EOF
-
-sudo apt update
-
-sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+sudo rm get-docker.sh
 # ------------ DOCKER END ------------
 
 
