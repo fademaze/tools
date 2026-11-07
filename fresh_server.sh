@@ -22,7 +22,7 @@ fi
 
 sudo dmesg -n 1 # unngå at meldinger spyttes ut på skjermen, utenom kritiske meldinger
 
-apt install curl wget nano ufw htop btop gdu
+apt install curl wget nano ufw htop btop gdu -y
 
 # ------------ DOCKER START ------------
 curl -fsSL https://get.docker.com -o get-docker.sh
