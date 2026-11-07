@@ -20,14 +20,23 @@ if [[ "$EUID" -ne 0 ]]; then
    exit 1
 fi
 
-apt install nano ufw
+sudo dmesg -n 1 # unngå at meldinger spyttes ut på skjermen, utenom kritiske meldinger
 
-# ------------ DOCKER ------------
+apt install curl wget nano ufw htop btop iostat gdu
+
+# ------------ DOCKER START ------------
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 sudo rm get-docker.sh
 # ------------ DOCKER END ------------
 
+# ------------ COCKPIT START ------------
+. /etc/os-release
+echo "deb http://deb.debian.org/debian ${VERSION_CODENAME}-backports main" | \
+    sudo tee /etc/apt/sources.list.d/backports.list
+sudo apt update
+sudo apt install -t ${VERSION_CODENAME}-backports cockpit
+# ------------ COCKPIT END ------------
 
 
 
