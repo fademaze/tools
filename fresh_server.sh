@@ -1,5 +1,5 @@
 #!/bin/bash
-set -eu # just in case an error occurs
+set -euo pipefail # just in case an error occurs
 
 # no comments for you 
 # it was hard to write 
